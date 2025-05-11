@@ -17,7 +17,6 @@
         <ResonitePath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\Resonite\')">C:\Program Files (x86)\Steam\steamapps\common\Resonite\</ResonitePath>
         <ResonitePath Condition="Exists('$(HOME)/.steam/steam/steamapps/common/Resonite/')">$(HOME)/.steam/steam/steamapps/common/Resonite/</ResonitePath>
 
-		<ResonitePath Condition="Exists('R:\SteamLibrary\steamapps\common\Resonite\')">R:\SteamLibrary\steamapps\common\Resonite\</ResonitePath>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="MicroUtils.HarmonyAnalyzers" Version="1.4.0">
@@ -25,9 +24,6 @@
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 
-		<PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.3" PrivateAssets="all" />
-
-		<!--<PackageReference Include="ResoniteModLoader" Version="2.6.1" />-->
 		<PackageReference Include="Lib.Harmony" Version="2.3.5" />
 		<!--<Reference Include="HarmonyLib">
 			<HintPath>$(ResonitePath)rml_libs\0Harmony.dll</HintPath>
@@ -37,12 +33,8 @@
 			<HintPath>$(ResonitePath)Libraries\ResoniteModLoader.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="FrooxEngine"> <!--Publicize="true"-->
+		<Reference Include="FrooxEngine">
 			<HintPath>$(ResonitePath)Resonite_Data\Managed\FrooxEngine.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
-		<Reference Include="Skyfrost.Base">
-			<HintPath>$(ResonitePath)Resonite_Data\Managed\Skyfrost.Base.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="Elements.Core">
