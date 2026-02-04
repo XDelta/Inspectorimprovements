@@ -23,6 +23,8 @@ public class InspectorImprovements : ResoniteMod {
 	[AutoRegisterConfigKey]
 	private static readonly ModConfigurationKey<bool> defaultExpanded = new("defaultExpanded", "Expanded by default", () => true);
 
+	[AutoRegisterConfigKey]
+	private static readonly ModConfigurationKey<long> collaspeOrderOffset = new("collaspeOrderOffset", "Collaspe button OrderOffset", () => -1);
 
 	internal static ModConfiguration? Config;
 
@@ -59,7 +61,7 @@ public class InspectorImprovements : ResoniteMod {
 
 
 		var button = ui.Button(OfficialAssets.Graphics.Icons.Tool.PerpendicularRay);
-		button.Slot.OrderOffset = -1;
+		button.Slot.OrderOffset = collaspeOrderOffset.Value;
 		Expander exp = button.Slot.AttachComponent<Expander>();
 		exp.SectionRoot.Target = expanderContent;
 		exp.IsExpanded = Config.GetValue(defaultExpanded);
