@@ -4,7 +4,6 @@ using FrooxEngine;
 using HarmonyLib;
 
 using ResoniteModLoader;
-using System.Linq;
 
 namespace InspectorImprovements;
 
@@ -15,8 +14,8 @@ public class InspectorImprovements : ResoniteMod {
 	public override string Version => VERSION_CONSTANT;
 	public override string Link => "https://github.com/XDelta/Inspectorimprovements";
 
-	[AutoRegisterConfigKey]
-	private static readonly ModConfigurationKey<bool> enabled = new("enabled", "", () => true);
+	//[AutoRegisterConfigKey]
+	//private static readonly ModConfigurationKey<bool> enabled = new("enabled", "", () => true);
 
 	[AutoRegisterConfigKey]
 	private static readonly ModConfigurationKey<bool> collapseComponents = new("collapseComponents", "Collapse button on components", () => true);
@@ -24,7 +23,8 @@ public class InspectorImprovements : ResoniteMod {
 	[AutoRegisterConfigKey]
 	private static readonly ModConfigurationKey<bool> defaultExpanded = new("defaultExpanded", "Expanded by default", () => true);
 
-	internal static ModConfiguration Config;
+
+	internal static ModConfiguration? Config;
 
 	public override void OnEngineInit() {
 		Config = GetConfiguration()!;
