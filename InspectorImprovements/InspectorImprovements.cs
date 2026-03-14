@@ -1,5 +1,7 @@
-using FrooxEngine.UIX;
+using Elements.Core;
+
 using FrooxEngine;
+using FrooxEngine.UIX;
 
 using HarmonyLib;
 
@@ -8,7 +10,7 @@ using ResoniteModLoader;
 namespace InspectorImprovements;
 
 public class InspectorImprovements : ResoniteMod {
-	internal const string VERSION_CONSTANT = "1.0.0";
+	internal const string VERSION_CONSTANT = "1.0.1";
 	public override string Name => "InspectorImprovements";
 	public override string Author => "Delta";
 	public override string Version => VERSION_CONSTANT;
