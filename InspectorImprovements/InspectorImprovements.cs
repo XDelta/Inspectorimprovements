@@ -40,9 +40,10 @@ public class InspectorImprovements : ResoniteMod {
 
 	[HarmonyPatch(typeof(WorkerInspector), "BuildUIForComponent")]
 	public class CollapseButtonPatch {
+		//also skip on allowContainer, this is for when a component is opened in an inspector by itself. No point showing or generating there.
 		public static void Postfix(Worker worker, WorkerInspector __instance) {
-			if (!Config.GetValue(collapseComponents)) return;
-			if (worker is Slot) return;
+			if (!collapseComponents.Value) { return; }
+			if (worker is Slot) { return; }
 			AddCollapseToggle(worker, __instance);
 		}
 	}
