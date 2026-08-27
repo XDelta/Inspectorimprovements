@@ -10,7 +10,7 @@ using ResoniteModLoader;
 namespace InspectorImprovements;
 
 public class InspectorImprovements : ResoniteMod {
-	internal const string VERSION_CONSTANT = "1.0.1";
+	internal const string VERSION_CONSTANT = "1.0.2";
 	public override string Name => "InspectorImprovements";
 	public override string Author => "Delta";
 	public override string Version => VERSION_CONSTANT;
@@ -46,27 +46,30 @@ public class InspectorImprovements : ResoniteMod {
 			if (worker is Slot) { return; }
 			AddCollapseToggle(worker, __instance);
 		}
-	}
-	private static void AddCollapseToggle(Worker worker, WorkerInspector wi) {
-		var recentComponent = wi.Slot.Children.Last();
-		var headerSlot = recentComponent.Children.First();
 
-		var expanderContent = recentComponent.AddSlot("ExpanderContent");
-		var ui = new UIBuilder(headerSlot);
-		expanderContent.AttachComponent<VerticalLayout>().Spacing.Value = 4;
-		foreach (var child in recentComponent.Children.Skip(1).ToList()) {
-			child.Parent = expanderContent;
+		internal static void AddCollapseToggle(Worker worker, WorkerInspector wi) {
+			var recentComponent = wi.Slot.Children.Last();
+			var headerSlot = recentComponent.Children.First();
+			var expanderContent = recentComponent.AddSlot("ExpanderContent");
+			var ui = new UIBuilder(headerSlot);
+			expanderContent.AttachComponent<VerticalLayout>().Spacing.Value = 4;
+			foreach (var child in recentComponent.Children.Skip(1).ToList()) {
+				child.Parent = expanderContent;
+			}
+
+			RadiantUI_Constants.SetupEditorStyle(ui);
+			ui.Style.FlexibleWidth = 0f;
+			ui.Style.MinWidth = 40f;
+
+
+			var button = ui.Button(OfficialAssets.Graphics.Icons.Tool.PerpendicularRay);
+			button.Slot.OrderOffset = collaspeOrderOffset.Value;
+			Expander exp = button.Slot.AttachComponent<Expander>();
+			exp.SectionRoot.Target = expanderContent;
+			exp.IsExpanded = defaultExpanded.Value;
 		}
-		
-		RadiantUI_Constants.SetupEditorStyle(ui);
-		ui.Style.FlexibleWidth = 0f;
-		ui.Style.MinWidth = 40f;
+	}
 
 
-		var button = ui.Button(OfficialAssets.Graphics.Icons.Tool.PerpendicularRay);
-		button.Slot.OrderOffset = collaspeOrderOffset.Value;
-		Expander exp = button.Slot.AttachComponent<Expander>();
-		exp.SectionRoot.Target = expanderContent;
-		exp.IsExpanded = Config.GetValue(defaultExpanded);
 	}
 }
